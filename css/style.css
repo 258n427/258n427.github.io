@@ -145,9 +145,21 @@ body {
 
 /* ===== 文章列表 ===== */
 .post-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 20px;
+}
+
+.post-list.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.post-list.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.post-list.cols-4 {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .post-card {
@@ -378,6 +390,13 @@ body {
 }
 
 /* ===== 响应式 ===== */
+@media (max-width: 1024px) {
+  .post-list.cols-3,
+  .post-list.cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 32px;
@@ -401,5 +420,12 @@ body {
   
   .post-detail .post-title {
     font-size: 28px;
+  }
+
+  /* 手机端全部变成单栏 */
+  .post-list.cols-2,
+  .post-list.cols-3,
+  .post-list.cols-4 {
+    grid-template-columns: 1fr;
   }
 }
