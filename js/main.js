@@ -2,15 +2,24 @@
 document.addEventListener('DOMContentLoaded', function() {
   // 视频背景随机切换
   const defaultVideoSources = [
-    'https://cdn.pixabay.com/video/2023/10/17/185120-876715784_large.mp4',
-    'https://cdn.pixabay.com/video/2024/01/08/196815-900382198_large.mp4',
-    'https://cdn.pixabay.com/video/2023/08/16/176173-855105202_large.mp4',
-    'https://cdn.pixabay.com/video/2024/03/15/204602-922506482_large.mp4'
+    'https://www.w3schools.com/html/mov_bbb.mp4',
+    'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+    'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
   ];
   const bgVideo = document.getElementById('bgVideo');
   if (bgVideo) {
     const customVideo = window.THEME_CONFIG && window.THEME_CONFIG.videoBg;
-    const videoSrc = customVideo || defaultVideoSources[Math.floor(Math.random() * defaultVideoSources.length)];
+    let videoSrc;
+    if (customVideo) {
+      // 优先用固定视频
+      videoSrc = customVideo;
+    } else {
+      // 从随机列表选
+      const listStr = window.THEME_CONFIG && window.THEME_CONFIG.videoList;
+      const customList = listStr ? listStr.split(',').map(s => s.trim()).filter(s => s) : [];
+      const sources = customList.length > 0 ? customList : defaultVideoSources;
+      videoSrc = sources[Math.floor(Math.random() * sources.length)];
+    }
     bgVideo.querySelector('source').src = videoSrc;
     bgVideo.load();
   }
