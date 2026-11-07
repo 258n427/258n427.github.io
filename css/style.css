@@ -418,18 +418,19 @@ body {
   border-top: 1px solid var(--card-border);
 }
 
-/* ===== 响应式：最大列数，随屏幕宽度自适应减少 ===== */
-/* 大屏：按设置的最大列数显示 */
+/* ===== 响应式：设置的是最大列数，实际列数随屏幕宽度自适应 ===== */
 
-/* 中等屏（1200px以下）：4列变3列 */
-@media (max-width: 1200px) {
+/* 默认：按设置的最大列数显示 */
+
+/* 最大4列：1400px以下从4列变3列 */
+@media (max-width: 1400px) {
   .post-list.cols-4 {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* 平板屏（1024px以下）：3列、4列变2列 */
-@media (max-width: 1024px) {
+/* 900px以下：3列、4列都变2列 */
+@media (max-width: 900px) {
   .post-list.cols-3,
   .post-list.cols-4 {
     grid-template-columns: repeat(2, 1fr);
