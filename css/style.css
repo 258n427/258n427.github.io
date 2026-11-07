@@ -150,14 +150,17 @@ body {
   gap: 20px;
 }
 
+/* 最大2列：宽屏2列，手机1列 */
 .post-list.cols-2 {
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* 最大3列：宽屏3列，平板2列，手机1列 */
 .post-list.cols-3 {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* 最大4列：超宽屏4列，宽屏3列，平板2列，手机1列 */
 .post-list.cols-4 {
   grid-template-columns: repeat(4, 1fr);
 }
@@ -389,7 +392,17 @@ body {
   border-top: 1px solid var(--card-border);
 }
 
-/* ===== 响应式 ===== */
+/* ===== 响应式：最大列数，随屏幕宽度自适应减少 ===== */
+/* 大屏：按设置的最大列数显示 */
+
+/* 中等屏（1200px以下）：4列变3列 */
+@media (max-width: 1200px) {
+  .post-list.cols-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 平板屏（1024px以下）：3列、4列变2列 */
 @media (max-width: 1024px) {
   .post-list.cols-3,
   .post-list.cols-4 {
@@ -397,6 +410,7 @@ body {
   }
 }
 
+/* 手机屏（768px以下）：全部变1列 */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 32px;
@@ -422,7 +436,6 @@ body {
     font-size: 28px;
   }
 
-  /* 手机端全部变成单栏 */
   .post-list.cols-2,
   .post-list.cols-3,
   .post-list.cols-4 {
